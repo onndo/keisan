@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>湿球温度計算機</title>
+</head>
+<body>
+    <h1>湿球温度計算機</h1>
+    <form>
+        <label>温度(℃)：</label>
+        <input type="number" id="temp"><br><br>
+        <label>相対湿度(%)：</label>
+        <input type="number" id="rh"><br><br>
+        <button type="button" onclick="calculate()">計算</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        function calculate() {
+            var temp = document.getElementById("temp").value;
+            var rh = document.getElementById("rh").value;
+
+            var h = ((rh / 100) * 6.105 * Math.exp(17.27 * temp / (237.7 + temp)));
+            var tw = (0.7 * temp) + (0.3 * h) - 4.3;
+
+            document.getElementById("result").innerHTML = "湿球温度：" + tw.toFixed(2) + "℃";
+        }
+    </script>
+</body>
+</html>
